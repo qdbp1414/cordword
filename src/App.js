@@ -3,16 +3,19 @@ import axios from 'axios';
 
 function App() {
     const [hello, setHello] = useState('')
-
-    useEffect(() => {
+    useEffect(function() {
         axios.get('/api/hello')
-            .then(response => setHello(response.data))
-            .catch(error => console.log(error))
-    }, []);
+            .then(function(response){
+                setHello(response.data)
+            })
+            .catch(function(error){
+                console.log("error :: " + error)
+            })
+    },[]);
 
     return (
         <div>
-            백엔드에서 가져온 데이터입니다 : {hello}
+            서버 데이터 : {hello}
         </div>
     );
 }
